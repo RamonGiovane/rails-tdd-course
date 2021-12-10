@@ -14,5 +14,5 @@ Rspec::Matchers.define :be_a_multiple_of do |expected|
   end
 end
 describe 18, 'Custom Matcher' do
-  it { is_expected.to be_a_multiple_of(3)}
+  it { is_expected.to be_a_multiple_of(3) }
 end
