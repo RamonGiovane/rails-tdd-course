@@ -21,6 +21,11 @@ RSpec.describe Customer, type: :model do
     expect(customer.full_name).to start_with('Sr.')
   end
 
+  it 'Creates a Customer Using FactoryBot! (sobreescrevendo o atributo)' do
+    customer = create(:customer, name: 'Ramon')
+    expect(customer.full_name).to start_with('Sr. Ramon')
+  end
+
   # Espera que se cria 1 objeto Customer no BD
   it { expect{ create(:customer) }.to change{Customer.all.size}.by(1)}
 end
