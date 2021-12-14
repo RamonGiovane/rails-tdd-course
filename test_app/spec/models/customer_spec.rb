@@ -21,6 +21,11 @@ RSpec.describe Customer, type: :model do
     expect(customer.full_name).to start_with('Sr.')
   end
 
+  it 'Creates a Customer Using FactoryBot! (usando Alias)' do
+    customer = create(:user)
+    expect(customer.full_name).to start_with('Sr.')
+  end
+
   it 'Creates a Customer Using FactoryBot! (sobreescrevendo o atributo)' do
     customer = create(:customer, name: 'Ramon')
     expect(customer.full_name).to start_with('Sr. Ramon')
