@@ -12,4 +12,21 @@ describe 'Test Double' do
     puts user.type
     puts user.password
   end
+
+  it 'as_null_object' do
+    user = double('User').as_null_object # quando 
+    
+    allow(user).to receive(:name).and_return('Ramon')
+    allow(user).to receive_messages(type: 'admin', password: 'senha')
+
+    puts user.name
+    puts user.type
+    puts user.password
+   
+    # Quando usamos as_null_object, ao testarmos uma referencia nula, nao dispara erro
+    puts user.foo
+    puts user.non_existing_method
+  end
+
+  
 end
