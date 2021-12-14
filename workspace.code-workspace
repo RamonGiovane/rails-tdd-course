@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "exemplo_rspec_tdd"
+		}
+	],
+	"settings": {
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#a6a2ae",
+			"activityBar.activeBorder": "#f7ece7",
+			"activityBar.background": "#a6a2ae",
+			"activityBar.foreground": "#15202b",
+			"activityBar.inactiveForeground": "#15202b99",
+			"activityBarBadge.background": "#f7ece7",
+			"activityBarBadge.foreground": "#15202b",
+			"sash.hoverBorder": "#a6a2ae",
+			"statusBar.background": "#8c8796",
+			"statusBar.foreground": "#15202b",
+			"statusBarItem.hoverBackground": "#726d7d",
+			"statusBarItem.remoteBackground": "#8c8796",
+			"statusBarItem.remoteForeground": "#15202b",
+			"titleBar.activeBackground": "#8c8796",
+			"titleBar.activeForeground": "#15202b",
+			"titleBar.inactiveBackground": "#8c879699",
+			"titleBar.inactiveForeground": "#15202b99"
+		},
+		"peacock.color": "#8c8796"
+	}
+}
