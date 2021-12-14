@@ -1,6 +1,8 @@
 require 'student'
 require 'course'
 
+# Mocks sao usados para testar comportamentos, enquato que
+# Stubs sao usados para subsituir estados
 describe 'Stub' do
   it '#has_finished?' do
     student = Student.new
@@ -46,6 +48,6 @@ describe 'Stub' do
 
     allow_any_instance_of(Student).to receive(:bar).and_raise(RuntimeError)
 
-    expect {s1.bar}.to raise_error RuntimeError
+    expect {s1.bar}.to raise_error RuntimeError 
   end
 end
