@@ -37,9 +37,16 @@ RSpec.describe Customer, type: :model do
     expect(c3.vip).to eq(nil)
   end
 
+  # Attributes_for extrai os atributos de uma determinada Factory
+  it 'Creates a Customer Using FactoryBot! (usando Heranca)' do
+    attrs = attributes_for(:customer)
+    customer = Customer.create(attrs)
+    expect(customer.full_name).to start_with('Sr')
+  end
+
   it 'Creates a Customer Using FactoryBot! (sobreescrevendo o atributo)' do
     customer = create(:customer, name: 'Ramon')
-    expect(customer.full_name).to start_with('Sr. Ramon')
+    expect(customer.full_name).to eq('Sr. Ramon')
   end
 
   # Espera que se cria 1 objeto Customer no BD
