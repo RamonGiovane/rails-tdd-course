@@ -39,16 +39,33 @@ RSpec.describe Customer, type: :model do
 
   # Attributes_for extrai os atributos de uma determinada Factory
   it 'Creates a Customer Using FactoryBot! (usando Heranca)' do
-    attrs = attributes_for(:customer)
+    attrs = attributes_for(:customer_default)
     customer = Customer.create(attrs)
     expect(customer.full_name).to start_with('Sr')
-  end
+  end 
 
   it 'Creates a Customer Using FactoryBot! (sobreescrevendo o atributo)' do
-    customer = create(:customer, name: 'Ramon')
+    customer = create(:customer_default, name: 'Ramon')
     expect(customer.full_name).to eq('Sr. Ramon')
   end
 
+  it 'Atributo Transitorio' do
+    customer = create(:customer_default, upcased: true)
+    expect(customer.name.upcase!).to eq(customer.name)
+  end
+
+  it 'Cliente Feminino' do
+    customer = create(:customer_female)
+    expect(customer.gender).to eq('F')
+  end
+
+
+  it 'Cliente Feminino VIP' do
+    customer = create(:customer_female_vip)
+    expect(customer.gender).to eq('F')
+    expect(customer.vip).to eq(true)
+  end
+
   # Espera que se cria 1 objeto Customer no BD
-  it { expect{ create(:customer) }.to change{Customer.all.size}.by(1)}
+  it { expect{ create(:customer_default) }.to change{Customer.all.size}.by(1)}
 end
