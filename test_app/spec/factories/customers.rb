@@ -3,6 +3,7 @@ FactoryBot.define do
     # Atributo transitorio, nao participa dos specs...
     transient do
       upcased { false }
+      qtty_orders 3
     end
 
     name { Faker::Name.name }
@@ -31,6 +32,11 @@ FactoryBot.define do
       days_to_pay { 15 }
     end
 
+    trait :with_orders do
+      after(:create) do |customer, evaluator|
+        create_list(:order, evaluator.qtty_orders, customer: customer)
+      end
+    end
     factory :customer_default, traits: [:default]
     factory :customer_vip, traits: [:vip]
 
@@ -42,6 +48,7 @@ FactoryBot.define do
     factory :customer_female_vip, traits: [:female, :vip]
     factory :customer_female, traits: [:female]
 
+    factory :customer_with_orders, traits: [:with_orders]
     # ...mas serve para realizar logicas como:
     after(:create) do |_customer, evaluator|
       Customer.name.upcase if evaluator.upcased
