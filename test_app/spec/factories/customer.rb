@@ -6,7 +6,12 @@ FactoryBot.define do
     end
 
     name { Faker::Name.name }
-    email { Faker::Internet.email }
+    # email { Faker::Internet.email }
+
+    # Usando Sequence para criar email
+    # Toda vez que se chamar customer.email, n tera o proximo valor
+    # Por padrao o valor inicial e 1, mas pode ser qualquer numero ou objecto que implemente o metodo next.
+    sequence(:email) { |n| "meu-email=#{n}" }
 
     trait :male do
       gender { 'M' }
