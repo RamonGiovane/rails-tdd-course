@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://jsonplaceholder.typicode.com/posts/2
+    uri: "<API-URL>/posts/2"
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Dec 2021 22:18:14 GMT
+      - Mon, 20 Dec 2021 22:29:00 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -51,17 +51,19 @@ http_interactions:
       Via:
       - 1.1 vegur
       Cf-Cache-Status:
-      - REVALIDATED
+      - HIT
+      Age:
+      - '646'
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=p6FV0hcyVleOGT7A02nX%2FmKulI%2B7C43sjPt4k1%2FpmWLeCKSYUZEvl0G8X%2FpvkiygbcETtS6OV8wmo5KQmo7PVhk8g8qiPyQMD1j6i6Kfu4BlhvKYNyWs457nApfKUiDdP6xCoU1R1prdrarP32ne"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OZN%2B29cR2IXtAXMoAVdD3Yd%2BgcLtUiIjiIpTpWZ4ZAkoSH%2Fv%2FNrxvLHSTONwfirnzB6JMbPYKw%2BhRHh2JJXAfsMpUt2%2BmW2yMlqQNWiTd0IWWkcmwWK%2FwGYqo5etmawocV7ed%2FHRkT2jH4QTkNdx"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 6c0c3ecf9bc36ae4-GRU
+      - 6c0c4e965be54d4e-GRU
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400, h3-27=":443";
         ma=86400
@@ -74,5 +76,5 @@ http_interactions:
           "title": "qui est esse",
           "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
         }
-  recorded_at: Mon, 20 Dec 2021 22:18:13 GMT
+  recorded_at: Mon, 20 Dec 2021 22:28:59 GMT
 recorded_with: VCR 6.0.0
