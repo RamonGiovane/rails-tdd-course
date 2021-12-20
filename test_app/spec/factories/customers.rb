@@ -7,7 +7,7 @@ FactoryBot.define do
     end
 
     name { Faker::Name.name }
-    # email { Faker::Internet.email }
+    address { Faker::Address.street_address }
 
     # Usando Sequence para criar email
     # Toda vez que se chamar customer.email, n tera o proximo valor
