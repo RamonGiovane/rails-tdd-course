@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  
   fixtures :customers
 
   it 'Creates a Customer' do
@@ -42,7 +41,7 @@ RSpec.describe Customer, type: :model do
     attrs = attributes_for(:customer_default)
     customer = Customer.create(attrs)
     expect(customer.full_name).to start_with('Sr')
-  end 
+  end
 
   it 'Creates a Customer Using FactoryBot! (sobreescrevendo o atributo)' do
     customer = create(:customer_default, name: 'Ramon')
@@ -59,13 +58,21 @@ RSpec.describe Customer, type: :model do
     expect(customer.gender).to eq('F')
   end
 
-
   it 'Cliente Feminino VIP' do
     customer = create(:customer_female_vip)
     expect(customer.gender).to eq('F')
     expect(customer.vip).to eq(true)
   end
 
+  it 'Travel_to' do
+    travel_to Time.zone.local(2004, 11, 24, 1, 4, 30) do
+      @customer = create(:customer_vip)
+    end
+
+    puts @customer.created_at
+    expect(@customer.created_at).to eq(Time.zone.local(2004, 11, 24, 1, 4, 30))
+  end
+
   # Espera que se cria 1 objeto Customer no BD
-  it { expect{ create(:customer_default) }.to change{Customer.all.size}.by(1)}
+  it { expect { create(:customer_default) }.to change { Customer.all.size }.by(1) }
 end
