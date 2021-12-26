@@ -27,12 +27,20 @@ RSpec.describe CustomersController, type: :controller do
       @customer = create(:customer)
     end
 
-    context '#create' do 
+    context '#create' do
+      it 'flash notice' do
+        customer_params = attributes_for(:customer)
+        sign_in @member
+
+        post :create, params: { customer: customer_params }
+        expect(flash[:notice]).to match(/Customer was successfully created/)
+      end
+
       it 'with valid attributes' do
         customer_params = attributes_for(:customer)
         sign_in @member
         exp = expect do
-          post :create, params: { customer: customer_params } 
+          post :create, params: { customer: customer_params }
         end
         exp.to change(Customer, :count).by 1
       end
