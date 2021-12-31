@@ -28,6 +28,12 @@ RSpec.describe CustomersController, type: :controller do
     end
 
     context '#create' do
+
+      # Usando shoulda-matchers para testar rotas
+      it 'Route' do
+        is_expected.to route(:get, '/customers').to(action: :index)
+      end
+
       it 'Content-Type' do
         customer_params = attributes_for(:customer)
         sign_in @member
