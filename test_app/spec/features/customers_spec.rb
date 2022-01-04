@@ -17,6 +17,11 @@ RSpec.feature 'Customers', type: :feature, js: true do
     expect(page).to have_current_path(customers_path)
   end
 
+  it 'Find' do
+    visit(customers_path)
+    expect(find('#my-div').find('h3')).to have_content('My div')
+  end
+
   it 'Creates a customer' do
     member =  create(:member)
     login_as(member, scope: :member)
