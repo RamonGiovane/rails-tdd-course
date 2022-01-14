@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative '../support/new_customer_form'
 
 RSpec.feature 'Customers', type: :feature, js: true do
   it 'Visits the index page' do
@@ -33,6 +34,16 @@ RSpec.feature 'Customers', type: :feature, js: true do
     fill_in('Address', with: Faker::Address.street_address)
 
     click_button('Create Customer')
+
+    expect(page).to have_content('Customer was successfully created.')
+  end
+
+  it 'Creates a customer - Page Object Pattern ' do
+    NewCustomerForm.new.login.visit_page.fill_in_with(
+      name: Faker::Name.name,
+      email: Faker::Internet.email
+      # Omiti o address, mas internamente eh chamado o valor default
+    ).submit
 
     expect(page).to have_content('Customer was successfully created.')
   end
