@@ -1,6 +1,9 @@
 # Webmock gem
 require 'webmock/rspec'
 
+# JSON Schema
+require 'json_matchers/rspec'
+
 require 'vcr'
 
 VCR.configure do |config|
