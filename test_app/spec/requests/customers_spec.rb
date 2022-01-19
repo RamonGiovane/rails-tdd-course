@@ -7,6 +7,15 @@ RSpec.describe 'Customers', type: :request do
       expect(response).to have_http_status(200)
     end
 
+    it 'show - JSON 200 OK' do
+      get '/customers/248166291.json'
+      response_body = JSON.parse(response.body)
+      expect(response).to have_http_status(200)
+      expect(response_body.fetch('id')).to be_kind_of(Integer)
+      expect(response_body.fetch('name')).to be_kind_of(String)
+    end
+
+    
     it 'index - JSON 200 OK' do
       get '/customers.json'
       expect(response.body).to include_json([
@@ -16,10 +25,11 @@ RSpec.describe 'Customers', type: :request do
                                             ])
     end
 
+
     it 'show - JSON 200 OK' do
       get '/customers/248166291.json'
       expect(response).to have_http_status(200)
-      expect(response.body).to include_json(id: /\d/)
+      expect(response.body).to include_json(id: /\d+/)
     end
   end
 
