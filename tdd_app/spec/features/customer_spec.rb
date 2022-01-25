@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Customers", type: :feature do
+feature 'Customers', type: :feature do
   scenario 'Verifica Link de Cadastro de Clientes' do
     visit root_path
     expect(page).to have_link('Cadastro de Clientes')
@@ -16,8 +16,24 @@ feature "Customers", type: :feature do
   scenario 'Verifica Formulario de Novo Cliente' do
     visit customers_path
     click_on 'Novo Cliente'
-    
-    expect(page).to have_content('Novo Cliente')
 
+    expect(page).to have_content('Novo Cliente')
+  end
+
+  scenario 'Cadastro de Clientes' do
+    visit new_customer_path
+
+    customer_name = Faker::Name.name
+
+    fill_in('customer_name', with: customer_name)
+    fill_in('Email', with: Faker::Internet.email)
+    fill_in('Telefone', with: Faker::Phone.phone_number)
+    attach_file('Foto do Perfil', "#{Rails.root}/spec/fixtures/avatar.png")
+    choose(option: %w[S N].sample)
+
+    click_on('Criar Cliente')
+
+    expect(page).to have_content('Cliente cadastrado com sucesso!')
+    expect(Customer.last.name).to eq(customer_name)
   end
 end
