@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Welcome", type: :feature do
+feature 'Welcome', type: :feature do
   scenario 'Mostra a mensagem de boas vindas' do
     visit(root_path) # o mesmo que usar '/'
     expect(page).to have_content('Bem-vindo')
