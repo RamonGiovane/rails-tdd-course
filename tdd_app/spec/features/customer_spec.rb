@@ -75,9 +75,27 @@ feature 'Customers', type: :feature do
       smoker: %w[S N].sample
     )
 
-
     visit(customers_path)
     expect(page).to have_content(c1.name).and have_content(c2.name)
     expect(page).to have_content(c1.email).and have_content(c2.email)
+  end
+
+  scenario 'Atualizacao do Cliente' do
+    customer = Customer.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
+      smoker: %w[S N].sample
+    )
+
+    visit edit_customer_path(customer.id)
+
+    new_name = Faker::Name.name
+    fill_in('customer_name', with: new_name)
+    click_on 'Atualizar Cliente'
+
+    expect(page).to have_content('Cliente atualizado com sucesso')
+    expect(page).to have_content(new_name)
   end
 end
