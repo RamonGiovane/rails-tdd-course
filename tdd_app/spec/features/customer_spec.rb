@@ -98,4 +98,36 @@ feature 'Customers', type: :feature do
     expect(page).to have_content('Cliente atualizado com sucesso')
     expect(page).to have_content(new_name)
   end
+
+  scenario 'Link Mostrar (Index Page)' do
+    Customer.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
+      smoker: %w[S N].sample
+    )
+
+    visit(customers_path)
+
+    find(:xpath, '/html/body/table/tbody/tr/td[3]/a').click
+
+    expect(page).to have_content('Mostrando Cliente')
+  end
+
+  scenario 'Link Editar (Index Page)' do
+    Customer.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
+      smoker: %w[S N].sample
+    )
+
+    visit(customers_path)
+
+    find(:xpath, '/html/body/table/tbody/tr/td[4]/a').click
+
+    expect(page).to have_content('Editando Cliente')
+  end
 end
