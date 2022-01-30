@@ -44,13 +44,7 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Mostra um cliente' do
-    customer = Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    customer = create(:customer)
 
     visit(customer_path(customer.id))
     expect(page).to have_content(customer.name)
@@ -59,21 +53,9 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Testando a pagina index' do
-    c1 = Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    c1 = create(:customer)
 
-    c2 = Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    c2 = create(:customer)
 
     visit(customers_path)
     expect(page).to have_content(c1.name).and have_content(c2.name)
@@ -81,13 +63,7 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Atualizacao do Cliente' do
-    customer = Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    customer = create(:customer)
 
     visit edit_customer_path(customer.id)
 
@@ -100,13 +76,7 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Link Mostrar (Index Page)' do
-    Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    create(:customer)
 
     visit(customers_path)
 
@@ -116,13 +86,7 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Link Editar (Index Page)' do
-    Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    create(:customer)
 
     visit(customers_path)
 
@@ -132,13 +96,7 @@ feature 'Customers', type: :feature do
   end
 
   scenario 'Link Apagar Cliente (Index Page)', js: true do
-    customer = Customer.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.phone_number,
-      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
-      smoker: %w[S N].sample
-    )
+    customer = create(:customer)
 
     visit(customers_path)
 
