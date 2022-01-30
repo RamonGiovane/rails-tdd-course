@@ -130,4 +130,22 @@ feature 'Customers', type: :feature do
 
     expect(page).to have_content('Editando Cliente')
   end
+
+  scenario 'Link Apagar Cliente (Index Page)', js: true do
+    customer = Customer.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.phone_number,
+      avatar: "#{Rails.root}/spec/fixtures/avatar.png",
+      smoker: %w[S N].sample
+    )
+
+    visit(customers_path)
+
+    find(:xpath, '/html/body/table/tbody/tr/td[5]/a').click
+    1.second # espera para que o alert apareca
+    page.driver.browser.switch_to.alert.accept
+
+    expect(page).to have_content('Cliente excluído com sucesso!')
+  end
 end

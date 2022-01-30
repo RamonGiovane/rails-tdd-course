@@ -4,27 +4,29 @@
 
 <h1>Listando Clientes</h1>
  
-<table border='1'>
-  <thead>
-    <tr>
-      <td>Nome</td>
-      <td>Email</td>
-      <td></td>
-      <td></td>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
+<% if @customers.present? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= customer.name %></td>
-        <td><%= customer.email %></td>
-        <td><%= link_to 'Mostrar', customer_path(customer) %> </td>
-        <td><%= link_to 'Editar', edit_customer_path(customer) %> </td>
+        <td>Nome</td>
+        <td>Email</td>
+        <td></td>
+        <td></td>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.name %></td>
+          <td><%= customer.email %></td>
+          <td><%= link_to 'Mostrar', customer_path(customer) %> </td>
+          <td><%= link_to 'Editar', edit_customer_path(customer) %> </td>
+          <td><%= link_to 'Excluir', customer, method: :delete, data: { confirm: 'Deseja realmente excluir?' } %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <%= link_to 'Novo Cliente', new_customer_path%>
