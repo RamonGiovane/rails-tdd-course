@@ -6,7 +6,7 @@ Learning TDD with Ruby on Rails, RSpec and Capybara
   - Using Ruby and Ruby on Rails
   - Using TDD
   - Using RSpec
-  - Understading Mocks e Stubs
+  - Understading Mocks & Stubs
   - Using Capybara
   - Using FactoryBot (FactoryGirl)
   - Using VCR
