@@ -36,4 +36,10 @@ feature 'Customers', type: :feature do
     expect(page).to have_content('Cliente cadastrado com sucesso!')
     expect(Customer.last.name).to eq(customer_name)
   end
+
+  scenario 'Cadastro de Cliente - Erro de validação' do
+    visit new_customer_path
+    click_on 'Criar Cliente'
+    expect(page).to have_content('não pode ficar em branco')
+  end
 end
